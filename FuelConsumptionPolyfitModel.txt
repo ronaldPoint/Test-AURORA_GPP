@@ -1,0 +1,17 @@
+clc;
+clear;
+close all;
+FuelConsumption = [278   423   638   966   972];
+DifferentAltitudes = [25000 20000 15000 10000 5000];
+InterpolatedAltitudes = min(DifferentAltitudes):1000:max(DifferentAltitudes);
+
+for i = 2:4
+    p = polyfit(DifferentAltitudes,FuelConsumption,i);
+    ApproximatedFuelConsumption = polyval(p,InterpolatedAltitudes);
+
+    figure;
+    plot(DifferentAltitudes,FuelConsumption,'ro','DisplayName','Original Data');
+    hold on;
+    plot(InterpolatedAltitudes,ApproximatedFuelConsumption,'k','DisplayName','Polyfit Model');
+    legend show;
+end
